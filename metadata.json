@@ -1,0 +1,7 @@
+{
+  "name": "HTML to Swift Playgrounds Converter",
+  "description": "Convert HTML and CSS markup into modern SwiftUI code ready for Apple Swift Playgrounds with live preview, customizable targets, and instant export.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
