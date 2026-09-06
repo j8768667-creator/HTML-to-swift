@@ -138,11 +138,20 @@ export default function App() {
         }),
       });
 
-      const data = await response.json();
-
-      if (!response.ok || data.error) {
-        throw new Error(data.error || "Failed to convert using Gemini AI");
+      if (!response.ok) {
+        let errorMsg = `Server error (${response.status})`;
+        try {
+          const errData = await response.json();
+          if (errData?.error) errorMsg = errData.error;
+        } catch {
+          if (response.status === 404) {
+            errorMsg = "AI backend is unavailable on static hosting (GitHub Pages). The offline compiler is active!";
+          }
+        }
+        throw new Error(errorMsg);
       }
+
+      const data = await response.json();
 
       if (data.swiftCode) {
         setAiResult(data.swiftCode);
